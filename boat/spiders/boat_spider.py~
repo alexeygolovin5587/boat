@@ -1,0 +1,54 @@
+
+
+import scrapy
+from items import BoatItem
+
+month = {
+	'January':'01',
+	'February':'02',
+	'March':'03',
+	'April':'04',
+	'May':'05',
+	'June':'06',
+	'July':'07',
+	'August':'08',
+	'September':'09',
+	'October':'10',
+	'November':'11',
+	'December':'12'
+}
+
+def is_number(var):
+    try:
+        var = int(var)
+        return var
+    except Exception:
+        return False
+
+class BoatSpider(scrapy.Spider):
+
+	name = "boat"
+	
+	def __init__(self, start_urls, postIDArr):
+		allowed_domains = ["www.cruise-ireland.com"]
+		self.start_urls = start_urls
+		self.postIDArr = postIDArr
+		self.index = 0;
+
+	def parse(self, response):
+			
+		for table in response.xpath('//table[@id="boat-options"]'):
+			for tr in table.xpath('.//tr'):
+				price = tr.xpath('.//td[@class="price"]/text()').extract()
+				if len(price):
+					item = BoatItem()
+
+					date = tr.xpath('.//td[1]/text()').extract()
+					
+					print date
+					item['postID'] = self.postIDArr[self.index]
+					item['price'] = price[0]
+					yield item
+		self.index += 1
+
+

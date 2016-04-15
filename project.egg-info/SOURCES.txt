@@ -1,0 +1,17 @@
+setup.py
+boat/__init__.py
+boat/boat_scrapy.py
+boat/hash_table.py
+boat/items.py
+boat/pipelines.py
+boat/settings.py
+boat/urlfilters.py
+boat/spiders/__init__.py
+boat/spiders/cruise_ireland_spider.py
+boat/spiders/emeraldstar_spider.py
+boat/spiders/silver_spider.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
